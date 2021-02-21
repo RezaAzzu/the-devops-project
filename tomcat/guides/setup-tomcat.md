@@ -98,7 +98,7 @@ Pastikan repo Anda dapat diakses secara publik (tidak privat) dan online (dapat 
 14. Di sebelah `Credentials`, klik `Add`. Masukkan username `udeploy` dan password `udeploy` (sesuai yang sudah ditambahkan di `conf/tomcat-user.xml`). Masukkan ID `deployer_user`.
 15. Klik `Add`.
 16. Pilih credential yang barusan diisi (`udeploy/***** ... `).
-17. Di sebelah `Tomcat URL`, masukkan alamat dari Tomcat (alamat IP publik dan port dari Tomcat). Misal: http://52.77.239.100:8090.
+17. Di sebelah `Tomcat URL`, masukkan http://localhost:8090.
 Catatan: karena pada panduan ini Tomcat dan Jenkins terdapat dalam satu server yakni Jenkins_Server, maka alamat Tomcat dan Jenkins_Server pasti sama. Namun, yang berbeda adalah di port-nya.
 18. Klik `Apply`, lalu `Save`.
 19. Klik `Build Now`. Tunggu hingga build selesai.
