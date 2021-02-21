@@ -108,5 +108,5 @@ Catatan: karena pada panduan ini Tomcat dan Jenkins terdapat dalam satu server y
 2. Sekarang, buka alamat Tomcat ditambah dengan `/webapp` di belakang alamatnya. Contoh: http://52.77.239.100:8090/webapp
 3. Webapp akan terbuka.
 
-Catatan: Setelah Webapp berhasil di-deploy tanpa error, bila deploy/panduan ini diulangi atau dicoba sekali lagi, akan menghasilkan error. Untuk itu, jangan ikuti panduan ini lebih dari satu kali setelah error. Error ini dikarenakan Webapp yang sudah di-deploy masih ada dalam Jenkins_Server dan harus dihapus sebelum dapat menerima versi Webapp baru.  
+Catatan: Setelah Webapp berhasil di-deploy tanpa error, bila deploy/panduan ini diulangi atau dicoba sekali lagi, akan menghasilkan error. Untuk itu, jangan ikuti panduan ini lebih dari satu kali setelah berhasil. Error ini dikarenakan Webapp yang sudah di-deploy masih ada dalam Jenkins_Server dan harus dihapus sebelum dapat menerima versi Webapp baru.  
 Panduan-panduan berikutnya akan mengatasi masalah ini.
