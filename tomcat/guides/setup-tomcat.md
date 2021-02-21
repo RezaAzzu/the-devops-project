@@ -29,7 +29,8 @@ Sebelum memulai, pastikan:
 3. Masuk ke root
 ```sudo su -```
 4. Masuk ke directory `/opt` (dengan perintah `cd /opt`). Lalu, jalankan perintah-perintah berikut.
-    ```cd /opt/
+    ```
+    cd /opt/
     wget [link-tomcat] #[link-tomcat] adalah link yang telah di-copy
     tar -xvzf [file-yang-terdownload]
     mv [folder-hasil-decompress] tomcat
@@ -43,7 +44,8 @@ Sebelum memulai, pastikan:
     ```
     Jangan lupa untuk meng-save file tersebut.
 6. Nyalakan service tomcat dengan menjalankan perintah
-    ```cd /opt/tomcat/bin
+    ```
+    cd /opt/tomcat/bin
     ./startup.sh
     ```
 7. Buka alamat IP publik Jenkins_Server pada port 8090 via browser. Cek apakah Tomcat sudah dapat diakses.
@@ -59,7 +61,8 @@ Sebelum memulai, pastikan:
     ```
 2. Buka file `conf/tomcat-user.xml`. Lalu, di bawah tag 
 `<tomcat-users ... version="1.0">` masukkan kode berikut
-    ```<role rolename="manager-gui"/>
+    ```
+    <role rolename="manager-gui"/>
     <role rolename="manager-script"/>
     <role rolename="manager-jmx"/>
     <role rolename="manager-status"/>
