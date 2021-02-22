@@ -51,7 +51,7 @@ Sebelum memulai, pastikan:
 7. Buka alamat IP publik Jenkins_Server pada port 8090 via browser. Cek apakah Tomcat sudah dapat diakses.
 
 ## 3. Meng-Update User Info
-1. Buka context.xml. Lalu, beri komen baris yang ada 'Valve className=...'-nya. Dari
+1. Buka file `/opt/tomcat/conf/context.xml`. Lalu, beri komen baris yang ada 'Valve className=...'-nya. Dari yang sebelumnya
     ```
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
     ```
@@ -59,8 +59,8 @@ Sebelum memulai, pastikan:
     ```
     <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
     ```
-2. Buka file `conf/tomcat-user.xml`. Lalu, di bawah tag 
-`<tomcat-users ... version="1.0">` masukkan kode berikut
+2. Buka file `/opt/tomcat/conf/tomcat-user.xml`. Lalu, di bawah tag 
+`<tomcat-users ... version="1.0">` tempelkan (paste) kode berikut
     ```
     <role rolename="manager-gui"/>
     <role rolename="manager-script"/>
@@ -124,11 +124,11 @@ Setelah Webapp berhasil di-deploy, bila ingin dilakukan deploy lagi (deploy Weba
 3. Di bawah `Build Triggers`, pilih `Poll SCM`.
 4. Isi field yang baru dengan berikut: `* * * * *`. Ini menandakan bahwa Jenkins akan mengecek perubahan repo dalam periode satu menit sekali (sesering mungkin).
 Catatan: 
-- Karakter pertama: menit
-- Karakter kedua: jam 
-- Karakter ketiga: hari 
-- Karakter keempat: bulan 
-- Karakter kelima: pekan 
+    - Karakter pertama: menit
+    - Karakter kedua: jam 
+    - Karakter ketiga: hari 
+    - Karakter keempat: bulan 
+    - Karakter kelima: pekan 
 5. Klik `Apply`, lalu `Save`.
 Mulai sekarang, tiap ada perubahan pada kode atau repo, Jenkins secara otomatis akan mem-build aplikasi (webapp) dan men-deploy-nya ke Tomcat.
 
