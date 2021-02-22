@@ -11,7 +11,7 @@ Sebelum memulai, pastikan:
 1. Paham cara menambahkan rule baru pada security group dari instance EC2 AWS.
 2. Jenkins_Server sudah ada (sudah mengikuti [tutorial](https://razzubair.medium.com/membangun-server-jenkins-dan-meng-install-plugin-maven-pada-jenkins-912a0aecb329) tentang setup Jenkins pada Jenkins_Server).
 3. Jenkins sudah ter-install pada Jenkins_Server (sudah mengikuti [tutorial](https://razzubair.medium.com/membangun-server-jenkins-dan-meng-install-plugin-maven-pada-jenkins-912a0aecb329) tentang setup Jenkins pada Jenkins_Server).
-4. Sudah meng-clone dan/atau mem-pull repo java-maven-helloworld (https://github.com/RezaAzzu/java-maven-helloworld) ke repo online pribadi Anda.
+4. Sudah meng-clone dan/atau mem-pull repo java-maven-helloworld (https://github.com/RezaAzzu/java-maven-helloworld) ke repo GitHub pribadi Anda.
 5. Paham mengoperasikan Linux secara dasar.
 
 ## 1. Menambahkan Port pada Security Group Jenkins_Server
@@ -108,5 +108,34 @@ Catatan: karena pada panduan ini Tomcat dan Jenkins terdapat dalam satu server y
 2. Sekarang, buka alamat Tomcat ditambah dengan `/webapp` di belakang alamatnya. Contoh: http://52.77.239.100:8090/webapp
 3. Webapp akan terbuka.
 
-Catatan: Setelah Webapp berhasil di-deploy tanpa error, bila deploy/panduan ini diulangi atau dicoba sekali lagi, akan menghasilkan error. Untuk itu, jangan ikuti panduan ini lebih dari satu kali setelah berhasil. Error ini dikarenakan Webapp yang sudah di-deploy masih ada dalam Jenkins_Server dan harus dihapus sebelum dapat menerima versi Webapp baru.  
-Panduan-panduan berikutnya akan mengatasi masalah ini.
+## 6. Menghapus Webapp di Jenkins_Server
+Setelah Webapp berhasil di-deploy, bila ingin dilakukan deploy lagi (deploy Webapp dengan perubahan kode terbaru), Webapp yang sebelumnya sudah di-deploy ke Jenkins_Server harus dihapus terlebih dahulu
+1. Akses Jenkins_Server.
+2. Pergi ke directory `/opt/tomcat/webapps`.
+3. Hapus directory `webapp` dan file `webapp.war` dengan perintah berikut.
+   ```
+   rm -rf webapp
+   rm -rf webapp.war
+   ```
+
+## 7. Membuat agar Tiap Kali Kode Webapp Berubah, Perubahan Otomatis Di-deploy ke Tomcat
+1. Di Jenkins, buka job yang terakhir dibuat.
+2. Klik `Configure`.
+3. Di bawah `Build Triggers`, pilih `Poll SCM`.
+4. Isi field yang baru dengan berikut: `* * * * *`. Ini menandakan bahwa Jenkins akan mengecek perubahan repo dalam periode satu menit sekali (sesering mungkin).
+Catatan: 
+- Karakter pertama: menit
+- Karakter kedua: jam 
+- Karakter ketiga: hari 
+- Karakter keempat: bulan 
+- Karakter kelima: pekan 
+5. Klik `Apply`, lalu `Save`.
+Mulai sekarang, tiap ada perubahan pada kode atau repo, Jenkins secara otomatis akan mem-build aplikasi (webapp) dan men-deploy-nya ke Tomcat.
+
+## 8. Mengubah Kode dan Melihat Perubahannya pada Tomcat
+1. Pada repo java-maven-helloworld yang telah Anda miliki, lakukan perubahan pada file `webapp/src/main/webapp/index.jsp`.
+Catatan: Perubahan dapat dilakukan dengan membuka text editor lalu mengedit isi dari file `index.jsp`.
+2. Simpan, commit, dan push repo Anda.
+3. Kembali ke Jenkins. Tunggu dan perhatikan bahwa job yang telah dirubah akan dimulai.
+4. Setelah selesai, buka kembali `/webapp`. Perhatikan perubahan yang ada.
+5. Buka website Tomcat dengan path `/webapp`. Perhatikan bahwa tampilan web berubah sesuai dengan perubahan yang telah dilakukan. 
