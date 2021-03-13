@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+  - name: Mencoba mengonversi file webapp.war menjadi image docker
+    command: docker build -t v1_image .
+    args:
+      chdir: /opt/docker
+  
+  - name: Mencoba membuat container dari image 
+    command: docker run -d --name v1_container -p 8080:8080 v1_image
