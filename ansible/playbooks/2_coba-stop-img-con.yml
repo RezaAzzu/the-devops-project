@@ -4,21 +4,21 @@
   
   tasks:
  - name: Mencoba me-stop running containers
-   command: docker container stop $(docker container ls -q --filter name=v*)
+   command: docker container stop $(docker container ls -q --filter name=devops*)
    ignore_errors: yes
 		
   - name: Mencoba me-remove stopped container
-    command: docker container rm $(docker container ls -q --filter name=v*)
+    command: docker container rm $(docker container ls -q --filter name=devops*)
     ignore_errors: yes	
 	
   - name: Mencoba me-remove docker image
-    command: docker rmi $(docker images --filter=reference='v*') 
+    command: docker rmi $(docker images --filter=reference='devops*') 
     ignore_errors: yes 
 
   - name: Mencoba mengonversi file webapp.war menjadi image docker
-    command: docker build -t v2_image .
+    command: docker build -t devops-image-v4 .
     args:
       chdir: /opt/docker
   
   - name: Mencoba membuat container dari image 
-    command: docker run -d --name v2_container -p 8080:8080 v2_image
+    command: docker run -d --name devops-container-v4 -p 8080:8080 devops-image-v4
